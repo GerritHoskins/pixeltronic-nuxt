@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
-const runtimeConfig = useRuntimeConfig();
+
+import api from '../api';
 
 export type Project = {
   _id: string;
@@ -22,8 +23,10 @@ export type ProjectAddRequestParams = {
 
 const API_BASE = '/api/project';
 
-const getApiFilePath = (filename: string) =>
-  `${runtimeConfig.apiURL}/assets/uploads/${filename}`;
+const getApiFilePath = (filename: string) => {
+  const runtimeConfig = useRuntimeConfig();
+  return `${runtimeConfig.apiURL}/assets/uploads/${filename}`;
+};
 
 export const initialProjectState = () => ({
   projects: [],
@@ -37,10 +40,7 @@ export const useProjectStore = defineStore({
   actions: {
     async all(): Promise<void> {
       try {
-        const { data } = await useFetch(
-          `${runtimeConfig.apiURL}${API_BASE}/all`,
-          { method: 'get' },
-        );
+        const { data } = await api.get(`${API_BASE}/all`);
         this.projects = data?.projects?.map((project: Project) => ({
           ...project,
           file: getApiFilePath(project.file),
@@ -53,13 +53,7 @@ export const useProjectStore = defineStore({
 
     async get(params: ProjectGetRequestParams): Promise<void> {
       try {
-        const { data } = await useFetch(
-          `${runtimeConfig.apiURL}${API_BASE}/get`,
-          {
-            method: 'get',
-            query: params,
-          },
-        );
+        const { data } = await api.get(`${API_BASE}/all`, { params });
         this.projects.push(data);
       } catch (error) {
         console.error('Error fetching project:', error);
@@ -75,9 +69,7 @@ export const useProjectStore = defineStore({
       formData.append('desc', data.desc);
 
       try {
-        await useFetch(`${runtimeConfig.apiURL}${API_BASE}/add`, {
-          method: 'post',
-          body: formData,
+        await api.post(`${API_BASE}/add`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

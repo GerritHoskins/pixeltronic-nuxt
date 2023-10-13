@@ -16,19 +16,23 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiURL: '',
+      apiURL: 'https://pixeltronic.info',
     },
     encryptionKey: '',
     gitHubToken: '',
   },
   modules: ['@pinia/nuxt', 'nuxt-quasar-ui', '@nuxtjs/eslint-module'],
+  axios: {
+    baseURL: 'https://pixeltronic.info',
+  },
   imports: {
     dirs: ['./stores'],
   },
   pinia: {
-    autoImports: ['defineStore', 'acceptHMRUpdate'],
+    autoImports: ['defineStore', 'storeToRefs'],
   },
   quasar: {
+    boot: ['capacitor'],
     extras: {
       font: 'roboto-font',
       fontIcons: ['material-icons'],

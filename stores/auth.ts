@@ -5,7 +5,7 @@ import { initialProjectState } from './project';
 import { useCrypto } from '~/composables/useCrypto';
 import { _AsyncData } from '#app/composables/asyncData';
 import { FetchError } from 'ofetch';
-const runtimeConfig = useRuntimeConfig();
+import api from '../api';
 
 interface User {
   id: null | string;
@@ -47,10 +47,7 @@ export const useAuthStore = defineStore({
 
     async performAuth(endpoint: string, data: RequestParams) {
       try {
-        return await useFetch(runtimeConfig.apiURL + endpoint, {
-          method: 'post',
-          body: data,
-        });
+        return await api.post(endpoint, data);
       } catch (e) {
         console.error(`Authentication error on ${endpoint}:`, e);
         throw e;
@@ -78,7 +75,7 @@ export const useAuthStore = defineStore({
       Object.assign(this, initialAuthState());
       initialProjectState();
       LocalStorage.remove('__persisted__auth');
-      await useFetch('/api/auth/logout', { method: 'post' });
+      await api.post('/api/auth/logout');
     },
   },
 });
