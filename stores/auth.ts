@@ -5,7 +5,7 @@ import { initialProjectState } from './project';
 import { useCrypto } from '~/composables/useCrypto';
 import { _AsyncData } from '#app/composables/asyncData';
 import { FetchError } from 'ofetch';
-import api from '../api';
+import { usePerformFetch } from '~/composables/usePerformFetch';
 
 interface User {
   id: null | string;
@@ -34,29 +34,33 @@ export const useAuthStore = defineStore({
   state: initialAuthState,
   actions: {
     async register(data: RequestParams) {
-      const response = await this.performAuth('/api/auth/register', data);
+      const response = await this.performFetch('/api/auth/register', 'POST', data);
       this.updateStateFromResponse(response);
       await this.persist();
     },
 
     async login(data: RequestParams) {
-      const response = await this.performAuth('/api/auth/login', data);
+      const response = await this.performFetch('/api/auth/login', 'POST', data);
       this.updateStateFromResponse(response);
       await this.persist();
     },
 
-    async performAuth(endpoint: string, data: RequestParams) {
+    async performFetch(endpoint: string, method: string, data: unknown, headers: Record<string, string>) {
       try {
-        return await api.post(endpoint, data);
+        const { response } = await usePerformFetch(endpoint, {
+          method,
+          data,
+          headers,
+        });
+
+        return response;
       } catch (e) {
-        console.error(`Authentication error on ${endpoint}:`, e);
+        console.error(`Error while fetching ${endpoint}:`, e);
         throw e;
       }
     },
 
-    updateStateFromResponse(
-      response: _AsyncData<unknown, FetchError<unknown> | null>,
-    ) {
+    updateStateFromResponse(response: _AsyncData<unknown, FetchError<unknown> | null>) {
       this.user = response?.data?.user;
       this.token = response?.data?.token;
     },
@@ -75,7 +79,7 @@ export const useAuthStore = defineStore({
       Object.assign(this, initialAuthState());
       initialProjectState();
       LocalStorage.remove('__persisted__auth');
-      await api.post('/api/auth/logout');
+      await this.performFetch('/api/auth/logout', 'POST');
     },
   },
 });

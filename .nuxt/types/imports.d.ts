@@ -2,7 +2,6 @@
 export {}
 declare global {
   const Dark: typeof import('../../node_modules/nuxt-quasar-ui/dist/runtime/adapter')['Dark']
-  const LocalStorage: typeof import('../../node_modules/nuxt-quasar-ui/dist/runtime/adapter')['LocalStorage']
   const abortNavigation: typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']
   const acceptHMRUpdate: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['acceptHMRUpdate']
   const addRouteMiddleware: typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']
@@ -118,6 +117,7 @@ declare global {
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']
   const useNuxtData: typeof import('../../node_modules/nuxt/dist/app')['useNuxtData']
   const useNuxtDevTools: typeof import('../../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools')['useNuxtDevTools']
+  const usePerformFetch: typeof import('../../composables/usePerformFetch')['usePerformFetch']
   const usePinia: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['usePinia']
   const useProjectStore: typeof import('../../stores/project')['useProjectStore']
   const useQuasar: typeof import('../../node_modules/nuxt-quasar-ui/dist/runtime/adapter')['useQuasar']
@@ -160,7 +160,6 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly Dark: UnwrapRef<typeof import('../../node_modules/nuxt-quasar-ui/dist/runtime/adapter')['Dark']>
-    readonly LocalStorage: UnwrapRef<typeof import('../../node_modules/nuxt-quasar-ui/dist/runtime/adapter')['LocalStorage']>
     readonly abortNavigation: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['acceptHMRUpdate']>
     readonly addRouteMiddleware: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']>
@@ -276,6 +275,7 @@ declare module 'vue' {
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']>
     readonly useNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtData']>
     readonly useNuxtDevTools: UnwrapRef<typeof import('../../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools')['useNuxtDevTools']>
+    readonly usePerformFetch: UnwrapRef<typeof import('../../composables/usePerformFetch')['usePerformFetch']>
     readonly usePinia: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['usePinia']>
     readonly useProjectStore: UnwrapRef<typeof import('../../stores/project')['useProjectStore']>
     readonly useQuasar: UnwrapRef<typeof import('../../node_modules/nuxt-quasar-ui/dist/runtime/adapter')['useQuasar']>
@@ -308,7 +308,6 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly Dark: UnwrapRef<typeof import('../../node_modules/nuxt-quasar-ui/dist/runtime/adapter')['Dark']>
-    readonly LocalStorage: UnwrapRef<typeof import('../../node_modules/nuxt-quasar-ui/dist/runtime/adapter')['LocalStorage']>
     readonly abortNavigation: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['acceptHMRUpdate']>
     readonly addRouteMiddleware: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']>
@@ -424,6 +423,7 @@ declare module '@vue/runtime-core' {
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']>
     readonly useNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtData']>
     readonly useNuxtDevTools: UnwrapRef<typeof import('../../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools')['useNuxtDevTools']>
+    readonly usePerformFetch: UnwrapRef<typeof import('../../composables/usePerformFetch')['usePerformFetch']>
     readonly usePinia: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['usePinia']>
     readonly useProjectStore: UnwrapRef<typeof import('../../stores/project')['useProjectStore']>
     readonly useQuasar: UnwrapRef<typeof import('../../node_modules/nuxt-quasar-ui/dist/runtime/adapter')['useQuasar']>

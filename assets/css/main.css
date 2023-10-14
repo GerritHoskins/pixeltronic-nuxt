@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Sora-Light';
+    font-style: normal;
+    font-weight: 300;
+    font-display:
+            swap;
+    src: url(../fonts/static/Sora-Light.ttf);
+}
+
+body {
+    font-family: 'Sora-Light', serif;
+}

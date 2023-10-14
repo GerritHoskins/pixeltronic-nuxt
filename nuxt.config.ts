@@ -16,15 +16,13 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiURL: 'https://pixeltronic.info',
+      // apiURL: 'https://pixeltronic.info',
+      apiURL: 'http://localhost:9000',
     },
-    encryptionKey: '',
-    gitHubToken: '',
+    encryptionKey: 'ptronic',
   },
   modules: ['@pinia/nuxt', 'nuxt-quasar-ui', '@nuxtjs/eslint-module'],
-  axios: {
-    baseURL: 'https://pixeltronic.info',
-  },
+  css: ['~/assets/css/main.css', '~/assets/css/quasar.variables.scss'],
   imports: {
     dirs: ['./stores'],
   },
@@ -32,9 +30,10 @@ export default defineNuxtConfig({
     autoImports: ['defineStore', 'storeToRefs'],
   },
   quasar: {
+    css: ['~/assets/css/main.css'],
     boot: ['capacitor'],
     extras: {
-      font: 'roboto-font',
+      font: '',
       fontIcons: ['material-icons'],
     },
     config: {
@@ -49,26 +48,26 @@ export default defineNuxtConfig({
       },
       dark: true, // or Boolean true/false
       brand: {
-        primary: '#35869c',
-        secondary: '#f1f9fa',
-        accent: '#5ce0bc',
+        primary: '#5ce0bc',
+        secondary: '#324958',
+        accent: '#616161',
 
-        dark: '#212121',
+        dark: '#616161',
         'dark-page': '#616161',
 
         positive: '#21BA45',
         negative: '#C10015',
         info: '#31CCEC',
         warning: '#F2C037',
+        h1: '1rem',
       },
     },
-    iconSet: 'material-icons', // Quasar icon set
-    // lang: 'en-US', // Quasar language pack
+    iconSet: 'material-icons',
     // components: [],
     // directives: [],
 
     // Quasar plugins
-    plugins: ['LocalStorage', 'Dark'],
+    plugins: ['Dark'],
   },
   animations: 'all',
   capacitor: {

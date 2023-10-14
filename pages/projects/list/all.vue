@@ -1,12 +1,6 @@
 <template>
   <div class="col items-start q-gutter-md q-pt-sm">
-    <q-card
-      v-for="project in projects"
-      :key="project.name"
-      bordered
-      class="text-black bg-secondary"
-      dark
-    >
+    <q-card v-for="project in projects" :key="project.name" bordered class="" dark>
       <q-card-section avatar>
         <q-avatar>
           <q-img
@@ -42,5 +36,5 @@ const projectStore = useProjectStore();
 onMounted(async () => {
   await projectStore.all();
 });
-const projects = computed((): Project[] => projectStore.projectList);
+const projects = computed((): Project[] => projectStore.projects);
 </script>

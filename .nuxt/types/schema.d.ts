@@ -18,8 +18,6 @@ declare module 'nuxt/schema' {
    },
 
    encryptionKey: string,
-
-   gitHubToken: string,
   }
   interface PublicRuntimeConfig {
    apiURL: string,

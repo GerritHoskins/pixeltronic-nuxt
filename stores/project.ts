@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-import api from '../api';
+import { usePerformFetch } from '~/composables/usePerformFetch';
 
 export type Project = {
   _id: string;
@@ -40,8 +40,10 @@ export const useProjectStore = defineStore({
   actions: {
     async all(): Promise<void> {
       try {
-        const { data } = await api.get(`${API_BASE}/all`);
-        this.projects = data?.projects?.map((project: Project) => ({
+        const { response } = await usePerformFetch(`${API_BASE}/all`, {
+          method: 'GET',
+        });
+        this.projects = response.projects.map((project: Project) => ({
           ...project,
           file: getApiFilePath(project.file),
         }));
@@ -53,8 +55,11 @@ export const useProjectStore = defineStore({
 
     async get(params: ProjectGetRequestParams): Promise<void> {
       try {
-        const { data } = await api.get(`${API_BASE}/all`, { params });
-        this.projects.push(data);
+        const { response } = await usePerformFetch(`${API_BASE}/get`, {
+          method: 'GET',
+          params,
+        });
+        this.projects.push(response.projects);
       } catch (error) {
         console.error('Error fetching project:', error);
         // TODO: user-friendly error handling here.
@@ -69,20 +74,19 @@ export const useProjectStore = defineStore({
       formData.append('desc', data.desc);
 
       try {
-        await api.post(`${API_BASE}/add`, formData, {
+        await usePerformFetch(`${API_BASE}/add`, {
+          method: 'POST',
+          data: formData,
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
+
         await this.all(); // Refresh the project list after adding a new project.
       } catch (error) {
         console.error('Error adding project:', error);
         // TODO: user-friendly error handling here.
       }
     },
-  },
-
-  getters: {
-    projectList: (state) => state.projects,
   },
 });

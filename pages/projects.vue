@@ -9,7 +9,7 @@
       :to="{ name: 'projects-add-project' }"
     />
     <div class="q-pt-md">
-      <router-view />
+      <NuxtPage />
     </div>
   </div>
 </template>

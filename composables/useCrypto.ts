@@ -1,8 +1,8 @@
 import CryptoJS from 'crypto-js';
 
-const secretKey = import.meta.env.VITE_ENCRYPTION_KEY || '';
-
 export const useCrypto = () => {
+  const config = useRuntimeConfig();
+  const secretKey = config.encryptionKey || '';
   function encrypt(data: unknown) {
     return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
   }
