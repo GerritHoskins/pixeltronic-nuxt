@@ -8,6 +8,7 @@ export { usePerformFetch } from '../composables/usePerformFetch';
 export { useAuthStore } from '../stores/auth';
 export { default as stores, PiniaCustomProperties } from '../stores/index';
 export { initialProjectState, useProjectStore } from '../stores/project';
-export { useDialogPluginComponent, useFormChild, useMeta, useQuasar, Notify, LocalStorage } from '../node_modules/nuxt-quasar-ui/dist/runtime/adapter';
+export { useDialogPluginComponent, useFormChild, useMeta, useQuasar, Notify, LocalStorage, Screen } from '../node_modules/nuxt-quasar-ui/dist/runtime/adapter';
+export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
 export { defineStore, acceptHMRUpdate, usePinia } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

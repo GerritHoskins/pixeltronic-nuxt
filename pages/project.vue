@@ -1,26 +1,22 @@
 <template>
   <div class="q-pa-md project">
-    <page-header>Projects</page-header>
-
-    <div class="row">
+    <div class="row justify-center items-center">
       <div class="col-xs-12 col-md-6">
-        <project-list-projects />
-      </div>
-      <div class="col-xs-12 col-md-5 offset-md-1">
+        <page-header>Projects</page-header>
         <q-btn
           label="Add new project"
           :to="{ name: 'add-project' }"
           icon="add"
           align="around"
-          class="btn-fixed-width"
+          class="q-mb-md"
           text-color="primary"
           color="secondary"
           :ripple="false"
           no-caps
         />
-        <q-separator color="primary" class="q-mt-md" />
 
         <nuxt-page />
+        <project-list-projects />
       </div>
     </div>
   </div>

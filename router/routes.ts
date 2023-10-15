@@ -11,31 +11,17 @@ const childRoutesWithAuthentication = [
     meta: generateMeta('AuthenticatedLayout', 'Blog', {
       floatingMenu: true,
       contentTitle: 'Interesting reads',
+      icon: 'newspaper',
     }),
   },
   {
     path: '/project',
+    name: 'project',
     meta: generateMeta('AuthenticatedLayout', 'Projects', {
       floatingMenu: true,
       contentTitle: "Things I've built",
+      icon: 'rocket',
     }),
-    children: [
-      {
-        path: ':id',
-        name: 'project',
-        meta: generateMeta('AuthenticatedLayout', 'Project'),
-      },
-      {
-        path: 'add-project',
-        name: 'add-project',
-        meta: generateMeta('AuthenticatedLayout', 'Add Project'),
-      },
-      {
-        path: '',
-        name: 'projects',
-        meta: generateMeta('AuthenticatedLayout', 'All Projects'),
-      },
-    ],
   },
 ];
 
@@ -46,6 +32,7 @@ const childRoutesWithoutAuthentication = [
     meta: generateMeta('DefaultLayout', 'Logout', {
       floatingMenu: true,
       contentTitle: 'Logout',
+      icon: 'logout',
     }),
   },
 ];
@@ -55,14 +42,18 @@ const childRoutesNoRequirements = [
     path: '/privacy',
     name: 'privacy',
     meta: generateMeta('AuthenticatedLayout', 'Privacy policy', {
-      footerMenu: true,
+      floatingMenu: true,
+      contentTitle: 'Privacy policy',
+      icon: 'policy',
     }),
   },
   {
     path: '/terms',
     name: 'terms',
     meta: generateMeta('AuthenticatedLayout', 'Terms of use', {
-      footerMenu: true,
+      floatingMenu: true,
+      contentTitle: 'Terms of use',
+      icon: 'gavel',
     }),
   },
 ];

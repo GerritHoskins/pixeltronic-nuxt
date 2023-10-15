@@ -1,5 +1,5 @@
 <template>
-  <q-scroll-area class="full-width" :thumb-style="thumbStyle" :bar-style="barStyle" style="height: 80vh">
+  <q-scroll-area class="full-width" :thumb-style="thumbStyle" :bar-style="barStyle" style="height: 70vh">
     <div class="q-gutter-md">
       <q-intersection
         once

@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from 'nuxt/config';
 export default defineNuxtConfig({
   css: ['@/assets/css/main.scss'],
+
   app: {
     head: {
       charset: 'utf-8',
@@ -22,13 +23,9 @@ export default defineNuxtConfig({
       {
         sassVariables: '/assets/css/quasar.variables.scss',
         animations: 'all',
-        plugins: ['Notify', 'LocalStorage'],
+        plugins: ['Notify', 'LocalStorage', 'Screen'],
         config: {
           dark: true,
-          brand: {
-            dark: '#272D43',
-            'dark-page': '#202433',
-          },
         },
       },
     ],
@@ -43,18 +40,22 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
+
   runtimeConfig: {
     public: {
       apiURL: 'https://pixeltronic.info',
     },
     encryptionKey: 'ptronic',
   },
+
   imports: {
     dirs: ['./stores'],
   },
-  /*  pinia: {
-       autoImports: ['defineStore', 'storeToRefs'],
-    }    /* quasar: {
+
+  pinia: {
+    autoImports: ['defineStore', 'storeToRefs'],
+  },
+  /* quasar: {
       //   css: ['~/assets/css/main.css', '~/assets/css/quasar.sass'],
       boot: ['capacitor'],
       extras: {
