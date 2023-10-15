@@ -1,28 +1,4 @@
-import { defineStore } from 'pinia';
-import { LocalStorage } from 'quasar';
-
-import { initialProjectState } from './project';
-import { useCrypto } from '~/composables/useCrypto';
-import { _AsyncData } from '#app/composables/asyncData';
-import { FetchError } from 'ofetch';
-import { usePerformFetch } from '~/composables/usePerformFetch';
-
-interface User {
-  id: null | string;
-  email: null | string;
-  token: null | string;
-  role: null | string;
-}
-
-interface Auth {
-  user: User;
-  token: string;
-}
-
-interface RequestParams {
-  email: string;
-  password: string;
-}
+import { Auth, RequestParams, User } from '~/types/auth.types';
 
 const initialAuthState = (): Auth => ({
   user: {} as User,
@@ -31,7 +7,9 @@ const initialAuthState = (): Auth => ({
 
 export const useAuthStore = defineStore({
   id: 'auth',
+
   state: initialAuthState,
+
   actions: {
     async register(data: RequestParams) {
       const response = await this.performFetch('/api/auth/register', 'POST', data);
@@ -61,8 +39,8 @@ export const useAuthStore = defineStore({
     },
 
     updateStateFromResponse(response: _AsyncData<unknown, FetchError<unknown> | null>) {
-      this.user = response?.data?.user;
-      this.token = response?.data?.token;
+      this.user = response?.user;
+      this.token = response?.token;
     },
 
     async persist() {

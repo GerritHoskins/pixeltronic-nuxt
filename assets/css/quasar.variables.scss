@@ -1,18 +1,32 @@
-// Quasar SCSS (& Sass) Variables
-// --------------------------------------------------
-// To customize the look and feel of this app, you can override
-// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
-
-// Check documentation for full list of Quasar variables
-
-// Your own variables (that are declared here) and Quasar's own
-// ones will be available out of the box in your .vue/.scss/.sass files
-
-// It's highly recommended to change the default colors
-// to match your app's branding.
-// Tip: Use the "Theme Builder" on Quasar's documentation website.
-
 $h1:        (size: 1.5rem,     line-height: 1.5rem,     letter-spacing: -.01562em, weight: 300) !default;
 $h2:        (size: 1rem,  line-height: 1rem,  letter-spacing: -.00833em, weight: 300) !default;
 $h3:        (size: 0.75rem,     line-height:  0.75rem, letter-spacing: normal,    weight: 400) !default;
 
+$primary: #5ce0bc;
+$secondary: #324958;
+$accent: #616161;
+
+$dark: #616161;
+$dark-page: #616161;
+
+$positive: #21BA45;
+$negative: #C10015;
+$info: #31CCEC;
+$warning: #F2C037;
+
+$brand-primary: #202433;
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  //border: 1px solid #202433;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0 1000px #202433 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

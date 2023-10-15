@@ -6,7 +6,7 @@ const generateMeta = (layout: string, title: string, options = {}) => ({
 
 const childRoutesWithAuthentication = [
   {
-    path: '',
+    path: '/blog',
     name: 'blog',
     meta: generateMeta('AuthenticatedLayout', 'Blog', {
       floatingMenu: true,
@@ -14,7 +14,7 @@ const childRoutesWithAuthentication = [
     }),
   },
   {
-    path: '/projects',
+    path: '/project',
     meta: generateMeta('AuthenticatedLayout', 'Projects', {
       floatingMenu: true,
       contentTitle: "Things I've built",
@@ -52,15 +52,15 @@ const childRoutesWithoutAuthentication = [
 
 const childRoutesNoRequirements = [
   {
-    path: '/privacy-policy',
-    name: 'privacy-policy',
+    path: '/privacy',
+    name: 'privacy',
     meta: generateMeta('AuthenticatedLayout', 'Privacy policy', {
       footerMenu: true,
     }),
   },
   {
-    path: '/terms-of-use',
-    name: 'terms-of-use',
+    path: '/terms',
+    name: 'terms',
     meta: generateMeta('AuthenticatedLayout', 'Terms of use', {
       footerMenu: true,
     }),

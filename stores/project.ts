@@ -1,25 +1,7 @@
 import { defineStore } from 'pinia';
 
 import { usePerformFetch } from '~/composables/usePerformFetch';
-
-export type Project = {
-  _id: string;
-  name: string;
-  desc: string;
-  file: string;
-  fileName?: string;
-};
-
-export type ProjectGetRequestParams = {
-  id: string;
-};
-
-export type ProjectAddRequestParams = {
-  name: string;
-  desc: string;
-  file: File | null;
-  fileName: string;
-};
+import { Project, ProjectGetRequestParams, ProjectAddRequestParams } from '~/types/project.types';
 
 const API_BASE = '/api/project';
 

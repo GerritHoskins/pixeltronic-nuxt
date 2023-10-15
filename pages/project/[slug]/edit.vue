@@ -1,54 +1,52 @@
 <template>
   <div class="row add-new-project">
-    <q-form
-      @submit.prevent="handleSubmit"
-      class="q-gutter-md col-xs-12 col-md-6 col-lg-4"
-    >
+    <q-form @submit.prevent="handleSubmit" class="q-gutter-md col-xs-12 col-md-6 col-lg-4">
       <q-input
-        dense
         v-model="name"
         :rules="[rules.required]"
         label="Title"
         name="name"
-        filled
         placeholder="Title"
         required
+        square
+        outlined
       />
       <q-input
-        dense
         v-model="description"
         :rules="[rules.required]"
         label="Description"
         name="desc"
-        filled
         placeholder="Description"
         required
+        square
+        outlined
       />
-      <q-file
-        dense
-        type="file"
-        name="file"
-        v-model="file"
-        filled
-        label="File name"
-      />
+      <q-file type="file" name="file" v-model="file" label="File name" square outlined />
       <div v-if="file">{{ file.name }}</div>
       <q-btn
+        :disabled="!isValid"
+        type="submit"
+        label="Submit"
+        text-color="primary"
+        color="secondary"
         :ripple="false"
         no-caps
-        :disabled="!isValid"
-        color="primary"
-        type="submit"
-        >Submit</q-btn
-      >
+      />
     </q-form>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { ProjectAddRequestParams, useProjectStore } from '~/stores/project';
+import { useProjectStore } from '~/stores/project';
 import { useRouter } from 'vue-router';
+import { ProjectAddRequestParams } from '~/types/project.types';
+
+definePageMeta({
+  layout: 'authenticated',
+  name: 'edit-project',
+  middleware: 'auth',
+});
 
 const name = ref('');
 const description = ref('');
@@ -59,11 +57,7 @@ const rules = {
 };
 
 const isValid = computed(() => {
-  return (
-    name.value &&
-    description.value &&
-    (!file.value || (file.value && file.value?.name))
-  );
+  return name.value && description.value && (!file.value || (file.value && file.value?.name));
 });
 
 const projectStore = useProjectStore();
