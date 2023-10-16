@@ -27,8 +27,8 @@ const childRoutesWithAuthentication = [
 
 const childRoutesWithoutAuthentication = [
   {
-    path: '',
-    name: 'login',
+    path: '/logout',
+    name: 'logout',
     meta: generateMeta('DefaultLayout', 'Logout', {
       floatingMenu: true,
       contentTitle: 'Logout',

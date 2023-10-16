@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/strapi": "^1.9.3",
     "@pinia/nuxt": "^0.5.0",
     "@quasar/app-vite": "^1.6.2",
     "@quasar/extras": "^1.16.7",

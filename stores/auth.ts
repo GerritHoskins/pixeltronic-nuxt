@@ -45,9 +45,8 @@ export const useAuthStore = defineStore({
 
     async persist() {
       try {
-        const { encrypt } = useCrypto();
-        const encryptedData = encrypt(this.token);
-        LocalStorage.set('__persisted__auth', encryptedData);
+        const token = useCookie('token'); // useCookie new hook in nuxt 3
+        token.value = this.token;
       } catch (e) {
         console.error('Error persisting authentication data:', e);
       }
@@ -56,7 +55,8 @@ export const useAuthStore = defineStore({
     async logout() {
       Object.assign(this, initialAuthState());
       initialProjectState();
-      LocalStorage.remove('__persisted__auth');
+      const token = useCookie('token');
+      token.value = null;
       await this.performFetch('/api/auth/logout', 'POST');
     },
   },
