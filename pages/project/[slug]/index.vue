@@ -13,4 +13,6 @@ definePageMeta({
   layout: 'authenticated',
   middleware: 'auth',
 });
+const { data } = await useFetch('/api/project');
+console.table(data);
 </script>

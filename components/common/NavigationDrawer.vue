@@ -1,5 +1,12 @@
 <template>
-  <q-drawer show-if-above v-model="leftDrawerOpen" side="left" class="navigation-drawer dark-page">
+  <q-drawer
+    show-if-above
+    :width="200"
+    :breakpoint="500"
+    v-model="leftDrawerOpen"
+    side="left"
+    class="navigation-drawer dark-page"
+  >
     <q-list padding>
       <q-item v-for="fabItem in tabs" :key="fabItem.label" clickable :to="{ name: fabItem.to.name }">
         <q-item-section avatar>

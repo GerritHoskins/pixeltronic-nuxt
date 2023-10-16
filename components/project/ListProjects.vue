@@ -36,9 +36,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted } from 'vue';
-import { useProjectStore } from '~/stores/project';
+import { onMounted } from 'vue';
+//import { useProjectStore } from '~/stores/project';
 import { Project } from '~/types/project.types';
+
+defineProps<{
+  projects: Project[];
+}>();
 
 const thumbStyle = {
   right: '0px',
@@ -56,12 +60,12 @@ const barStyle = {
   opacity: 0.2,
 };
 
-const projectStore = useProjectStore();
+//const projectStore = useProjectStore();
 
 onMounted(async () => {
-  await projectStore.all();
+  // await projectStore.all();
 });
-const projects = computed((): Project[] => projectStore.projects);
+//const projects = computed((): Project[] => projectStore.projects);
 </script>
 
 <style lang="scss" scoped>

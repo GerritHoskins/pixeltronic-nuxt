@@ -13,34 +13,38 @@
     "@pinia/nuxt": "^0.5.0",
     "@quasar/app-vite": "^1.6.2",
     "@quasar/extras": "^1.16.7",
+    "@types/uuid": "^9.0.5",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "@vueuse/core": "^10.5.0",
     "axios": "^1.5.1",
     "crypto-js": "^4.1.1",
+    "mongoose": "^7.6.2",
+    "nuxt-mongoose": "^1.0.2",
     "pinia": "^2.1.7",
-    "quasar": "^2.12.7"
+    "quasar": "^2.12.7",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@quasar/app-vite": "^1.6.2",
+    "@sidebase/nuxt-auth": "^0.6.0-beta.7",
     "@types/crypto-js": "^4.1.2",
     "@types/node": "^20.8.6",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
-    "eslint": "^8.51.0",
     "@vue/eslint-config-typescript": "^12.0.0",
+    "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-vue": "^9.17.0",
     "nuxt": "^3.7.4",
     "nuxt-quasar-ui": "^2.0.6",
     "prettier": "^3.0.3",
+    "sass": "^1.69.3",
     "typescript": "^5.2.2",
-    "vue-router": "^4.2.5",
-
-    "sass": "^1.69.3"
+    "vue-router": "^4.2.5"
   },
   "overrides": {
     "vue": "latest"

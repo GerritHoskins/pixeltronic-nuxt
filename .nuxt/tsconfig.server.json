@@ -56,6 +56,12 @@
       ],
       "pinia": [
         "../node_modules/pinia/dist/pinia"
+      ],
+      "#nuxt/mongoose": [
+        "../node_modules/nuxt-mongoose/dist/runtime/server/services"
+      ],
+      "#nuxt/mongoose/*": [
+        "../node_modules/nuxt-mongoose/dist/runtime/server/services/*"
       ]
     }
   },
@@ -65,6 +71,7 @@
     "../node_modules/@nuxtjs/eslint-module/runtime/server",
     "../node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@pinia/nuxt/runtime/server",
+    "../node_modules/nuxt-mongoose/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "./types/nitro.d.ts",
     "../**/*",

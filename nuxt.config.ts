@@ -1,5 +1,10 @@
 import { defineNuxtConfig } from 'nuxt/config';
 export default defineNuxtConfig({
+  sourcemap: {
+    server: true,
+    client: true,
+  },
+
   css: ['@/assets/css/main.scss'],
 
   app: {
@@ -32,7 +37,13 @@ export default defineNuxtConfig({
     '@nuxtjs/eslint-module',
     '@nuxt/devtools',
     '@pinia/nuxt',
+    'nuxt-mongoose',
   ],
+  mongoose: {
+    uri: `mongodb+srv://${process.env.NUXT_DB_USERNAME}:${process.env.NUXT_DB_PASSWORD}@${process.env.NUXT_DB_CLUSTER}`,
+    options: {},
+    modelsDir: 'models',
+  },
 
   components: [/*{ path: '~/components/icons', pathPrefix: false },*/ '~/components'],
   devtools: { enabled: true },
@@ -46,6 +57,9 @@ export default defineNuxtConfig({
       apiURL: 'https://pixeltronic.info',
     },
     encryptionKey: 'ptronic',
+    dbCluster: 'atlascluster.gim7y0m.mongodb.net',
+    dbUserName: 'pixeltronic',
+    dbPassword: '996047521',
   },
 
   imports: {

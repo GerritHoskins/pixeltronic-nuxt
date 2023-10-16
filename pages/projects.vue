@@ -16,7 +16,7 @@
         />
 
         <nuxt-page />
-        <project-list-projects />
+        <project-list-projects :projects="data" />
       </div>
     </div>
   </div>
@@ -27,7 +27,10 @@ import PageHeader from '~/components/common/PageHeader.vue';
 
 definePageMeta({
   layout: 'authenticated',
-  name: 'project',
+  name: 'projects',
   middleware: 'auth',
 });
+
+const { data } = await useFetch('/api/projects');
+console.table(data);
 </script>

@@ -15,8 +15,8 @@ const childRoutesWithAuthentication = [
     }),
   },
   {
-    path: '/project',
-    name: 'project',
+    path: '/projects',
+    name: 'projects',
     meta: generateMeta('AuthenticatedLayout', 'Projects', {
       floatingMenu: true,
       contentTitle: "Things I've built",
