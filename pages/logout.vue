@@ -1,20 +1,28 @@
-<script setup lang="ts">
-import PageHeader from '~/components/common/PageHeader.vue';
-
-definePageMeta({
-  layout: 'authenticated',
-  middleware: 'auth',
-  name: 'logout',
-});
-const authStore = useAuthStore();
-await authStore.logout().then(() => {
-  console.log('logged out');
-  navigateTo('/');
-});
-</script>
-
 <template>
-  <page-header>Logout</page-header>
+  <div class="logout" />
 </template>
 
-<style scoped lang="scss"></style>
+<script setup>
+definePageMeta({
+  layout: 'authenticated',
+  //middleware: 'auth',
+  name: 'logout',
+  icon: 'logout',
+});
+
+const user = useSupabaseUser();
+const supabase = useSupabaseClient();
+const loading = ref(false);
+
+try {
+  loading.value = true;
+  const { error } = await supabase.auth.signOut();
+  if (error) throw error;
+  user.value = null;
+} catch (error) {
+  alert(error.message);
+} finally {
+  loading.value = false;
+}
+//await useFetch<Project[]>('/api/auth/logout');
+</script>

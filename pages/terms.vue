@@ -1,6 +1,5 @@
 <template>
   <div class="q-pa-md">
-    <page-header>Terms</page-header>
     <div class="">
       <p>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
@@ -42,10 +41,9 @@
 </template>
 
 <script setup lang="ts">
-import PageHeader from '~/components/common/PageHeader.vue';
-
 definePageMeta({
-  layout: 'default',
+  layout: 'authenticated',
+  icon: 'gavel',
   name: 'terms',
 });
 </script>

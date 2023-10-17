@@ -1,63 +1,48 @@
+import { Article } from '~/types/article.types';
+
 export default defineEventHandler(async event => {
-  const { method, context } = event;
+  const { method } = event;
+  let articles: Article[] = [];
   if (method === 'GET') {
     // Mock data.
-    return [
+    articles = [
       {
-        _id: 1,
-        name: 'Article A',
-        desc: 'description',
-        thumbnail: 'icons/android-chrome-512x512.png',
-        url: 'https://nuxt.com/docs/guide/directory-structure/server',
+        attributes: {
+          _id: 1,
+          title: 'Article POI',
+          description: 'descriptionription',
+          thumbnail: 'icons/android-chrome-512x512.png',
+          url: 'https://nuxt.com/docs/guide/directory-structure/server',
+        },
       },
       {
-        _id: 2,
-        name: 'Article B',
-        desc: 'description',
-        thumbnail: 'icons/android-chrome-512x512.png',
-        url: 'https://nuxt.com/docs/guide/directory-structure/server',
+        attributes: {
+          _id: 2,
+          title: 'Article BXW',
+          description: 'descriptionription',
+          thumbnail: 'icons/android-chrome-512x512.png',
+          url: 'https://nuxt.com/docs/guide/directory-structure/server',
+        },
       },
       {
-        _id: 3,
-        name: 'Article C',
-        desc: 'description',
-        thumbnail: 'icons/android-chrome-512x512.png',
-        url: 'https://nuxt.com/docs/guide/directory-structure/server',
+        attributes: {
+          _id: 3,
+          title: 'Article FDE',
+          description: 'descriptionription',
+          thumbnail: 'icons/android-chrome-512x512.png',
+          url: 'https://nuxt.com/docs/guide/directory-structure/server',
+        },
       },
       {
-        _id: 4,
-        name: 'Article D',
-        desc: 'description',
-        thumbnail: 'icons/android-chrome-512x512.png',
-        url: 'https://nuxt.com/docs/guide/directory-structure/server',
-      },
-      {
-        _id: 5,
-        name: 'Article E',
-        desc: 'description',
-        thumbnail: 'icons/android-chrome-512x512.png',
-        url: 'https://nuxt.com/docs/guide/directory-structure/server',
-      },
-      {
-        _id: 6,
-        name: 'Article F',
-        desc: 'description',
-        thumbnail: 'icons/android-chrome-512x512.png',
-        url: 'https://nuxt.com/docs/guide/directory-structure/server',
+        attributes: {
+          _id: 4,
+          title: 'Article ASD',
+          description: 'descriptionription',
+          thumbnail: 'icons/android-chrome-512x512.png',
+          url: 'https://nuxt.com/docs/guide/directory-structure/server',
+        },
       },
     ];
-    /* try {
-          const projects = await Project.find({});
-          return projects.map(project => ({
-            id: project.id,
-            name: project.name,
-            desc: project.desc,
-            file: project.file ?? '',
-          }));
-        } catch (error) {
-          handleErrors(error, res, 'Failed to retrieve all projects');
-        }*/
   }
-
-  res.status(405).end(); // Method Not Allowed
+  return articles;
 });

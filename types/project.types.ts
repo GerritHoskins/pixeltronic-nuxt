@@ -1,5 +1,5 @@
 export type Project = {
-  _id: string;
+  _id: number;
   name: string;
   desc: string;
   file: string;
@@ -7,7 +7,7 @@ export type Project = {
 };
 
 export type ProjectGetRequestParams = {
-  id: string;
+  id: number;
 };
 
 export type ProjectAddRequestParams = {

@@ -1,15 +1,50 @@
-<script setup>
+<template>
+  <div class="q-pt-sm">
+    <q-btn
+      class="full-width q-mb-md"
+      text-color="primary"
+      color="secondary"
+      :ripple="false"
+      no-caps
+      :label="loading ? 'Loading' : 'Sign in with GitHub'"
+      :disabled="loading"
+      @click="handleLogin('github')"
+    />
+    <q-btn
+      class="full-width q-mb-md"
+      text-color="primary"
+      color="secondary"
+      :ripple="false"
+      no-caps
+      :label="loading ? 'Loading' : 'Sign in with Google'"
+      :disabled="loading"
+      @click="handleLogin('google')"
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
 const supabase = useSupabaseClient();
 
 const loading = ref(false);
-const email = ref('');
-
-const handleLogin = async () => {
+const handleLogin = async (provider: string) => {
   try {
     loading.value = true;
-    const { error } = await supabase.auth.signInWithOtp({ email: email.value });
-    if (error) throw error;
-    alert('Check your email for the login link!');
+    if (provider === 'google') {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      });
+      if (error) throw error;
+    } else {
+      const { error } = await supabase.auth.signInWithOAuth({ provider: 'github' });
+      if (error) throw error;
+    }
   } catch (error) {
     alert(error.error_description || error.message);
   } finally {
@@ -17,29 +52,3 @@ const handleLogin = async () => {
   }
 };
 </script>
-
-<template>
-  <q-form @submit.prevent="handleLogin">
-    <q-input
-      class="full-width"
-      square
-      outlined
-      label="Email address"
-      type="email"
-      placeholder="Your email"
-      v-model="email"
-    />
-    <div class="q-pt-sm">
-      <q-btn
-        type="submit"
-        class="full-width"
-        text-color="primary"
-        color="secondary"
-        :ripple="false"
-        no-caps
-        :label="loading ? 'Loading' : 'Send link'"
-        :disabled="loading"
-      />
-    </div>
-  </q-form>
-</template>

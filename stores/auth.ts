@@ -1,5 +1,5 @@
 import { Auth, RequestParams, User } from '~/types/auth.types';
-
+import { defineStore } from 'pinia';
 const initialAuthState = (): Auth => ({
   user: {} as User,
   token: '',
@@ -11,34 +11,36 @@ export const useAuthStore = defineStore({
   state: initialAuthState,
 
   actions: {
-    async register(data: RequestParams) {
-      const response = await this.performFetch('/api/auth/register', 'POST', data);
-      this.updateStateFromResponse(response);
-      await this.persist();
-    },
-
-    async login(data: RequestParams) {
-      const response = await this.performFetch('/api/auth/login', 'POST', data);
-      this.updateStateFromResponse(response);
-      await this.persist();
-    },
-
-    async performFetch(endpoint: string, method: string, data: unknown, headers: Record<string, string>) {
-      try {
-        const { response } = await usePerformFetch(endpoint, {
-          method,
-          data,
-          headers,
+    async register(authData: RequestParams) {
+      //const response = await this.performFetch('/api/auth/register', 'POST', data);
+      await $fetch('/api/auth/register', {
+        server: true,
+        method: 'POST',
+        body: authData,
+      })
+        .then(response => {
+          this.updateStateFromResponse(response as Auth);
+          this.persist();
+        })
+        .catch(error => {
+          throw error;
         });
+    },
 
-        return response;
-      } catch (e) {
-        console.error(`Error while fetching ${endpoint}:`, e);
-        throw e;
+    async login(authData: RequestParams) {
+      //const response = await this.performFetch('/api/auth/login', 'POST', data);
+      try {
+        const config = useRuntimeConfig();
+        const response = await $fetch(`${config.public.apiURL}/api/auth/login`, { method: 'post', body: authData });
+
+        this.updateStateFromResponse(response);
+        await this.persist();
+      } catch (error) {
+        throw error;
       }
     },
 
-    updateStateFromResponse(response: _AsyncData<unknown, FetchError<unknown> | null>) {
+    updateStateFromResponse(response: unknown) {
       this.user = response?.user;
       this.token = response?.token;
     },
@@ -55,9 +57,6 @@ export const useAuthStore = defineStore({
     async logout() {
       Object.assign(this, initialAuthState());
       initialProjectState();
-      const token = useCookie('token');
-      token.value = null;
-      await this.performFetch('/api/auth/logout', 'POST');
     },
   },
 });

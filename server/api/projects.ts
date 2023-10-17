@@ -1,10 +1,11 @@
-import Project from '~/types/project.types';
+import { Project } from '~/types/project.types';
 
 export default defineEventHandler(async event => {
-  const { method, context } = event;
+  const { method } = event;
+  let projects: Project[] = [];
   if (method === 'GET') {
     // Mock data.
-    const projects: Project[] = [
+    projects = [
       { _id: 1, name: 'Project A', desc: 'description', file: 'icons/android-chrome-512x512.png' },
       { _id: 2, name: 'Project B', desc: 'description', file: 'icons/android-chrome-512x512.png' },
       { _id: 3, name: 'Project C', desc: 'description', file: 'icons/android-chrome-512x512.png' },
@@ -14,7 +15,7 @@ export default defineEventHandler(async event => {
       { _id: 7, name: 'Project G', desc: 'description', file: 'icons/android-chrome-512x512.png' },
       { _id: 8, name: 'Project H', desc: 'description', file: 'icons/android-chrome-512x512.png' },
     ];
-    return projects;
+
     /* try {
       const projects = await Project.find({});
       return projects.map(project => ({
@@ -27,6 +28,5 @@ export default defineEventHandler(async event => {
       handleErrors(error, res, 'Failed to retrieve all projects');
     }*/
   }
-
-  res.status(405).end(); // Method Not Allowed
+  return projects;
 });

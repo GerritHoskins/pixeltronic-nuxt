@@ -1,6 +1,6 @@
 <template>
   <q-scroll-area class="full-width" :thumb-style="thumbStyle" :bar-style="barStyle" style="height: 70vh">
-    <div class="q-gutter-md">
+    <div class="q-gutter-md" v-if="projects">
       <q-intersection
         once
         ssr-prerender
@@ -41,7 +41,7 @@ import { onMounted } from 'vue';
 import { Project } from '~/types/project.types';
 
 defineProps<{
-  projects: Project[];
+  projects: Project[] | null;
 }>();
 
 const thumbStyle = {

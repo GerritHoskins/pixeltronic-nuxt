@@ -11,14 +11,13 @@
     <navigation-drawer />
 
     <q-page-container>
-      <q-page padding>
-        <slot />
-      </q-page>
+      <page-header />
+      <slot />
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup lang="ts">
-import LayoutHeader from '~/components/common/LayoutHeader.vue';
-import NavigationDrawer from '~/components/common/NavigationDrawer.vue';
+import LayoutHeader from '~/components/layoutHeader.vue';
+import NavigationDrawer from '~/components/navigationDrawer.vue';
 </script>
