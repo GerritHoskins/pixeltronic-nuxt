@@ -24,14 +24,29 @@ export default defineNuxtConfig({
       {
         sassVariables: '/assets/css/quasar.variables.scss',
         animations: 'all',
-        plugins: ['Notify', 'LocalStorage', 'Screen'],
-        config: { dark: true },
+        plugins: ['Notify', 'Screen'],
+        boot: ['capacitor'],
+        extras: {
+          fontIcons: ['material-icons'],
+        },
+        config: {
+          capacitor: {
+            iosStatusBarPadding: true,
+            backButtonExit: false,
+            backButton: true,
+            hideSplashscreen: false,
+            appName: 'pixeltronic',
+            version: '0.0.1',
+          },
+          dark: true,
+        },
       },
     ],
     '@nuxtjs/eslint-module',
     '@nuxt/devtools',
     '@pinia/nuxt',
     'nuxt-mongoose',
+    '@nuxtjs/supabase',
     '@nuxtjs/strapi',
   ],
 
@@ -40,6 +55,13 @@ export default defineNuxtConfig({
     uri: `mongodb+srv://${process.env.NUXT_DB_USERNAME}:${process.env.NUXT_DB_PASSWORD}@${process.env.NUXT_DB_CLUSTER}`,
     options: {},
     modelsDir: 'models',
+  },
+
+  supabase: {
+    redirectOptions: {
+      login: '/',
+      callback: '/confirm',
+    },
   },
 
   // Configurations for strapi
@@ -72,10 +94,13 @@ export default defineNuxtConfig({
     client: true,
   },
   runtimeConfig: {
-    public: { apiURL: 'https://pixeltronic.info' },
-    encryptionKey: 'ptronic',
-    dbCluster: 'atlascluster.gim7y0m.mongodb.net',
-    dbUserName: 'pixeltronic',
-    dbPassword: '996047521',
+    public: {
+      apiURL: process.env.NUXT_API_URL || '',
+      cookieName: process.env.NUXT_COOKIE_NAME,
+    },
+    encryptionKey: process.env.NUXT_ENCRYPTION_KEY,
+    dbCluster: process.env.NUXT_DB_CLUSTER,
+    dbUserName: process.env.NUXT_DB_USERNAME,
+    dbPassword: process.env.NUXT_DB_PASSWORD,
   },
 });
