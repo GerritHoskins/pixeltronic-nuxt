@@ -15,6 +15,7 @@ import PageHeader from '~/components/pageHeader.vue';
 
 definePageMeta({
   layout: 'default',
+  middleware: 'auth',
   name: 'Login',
 });
 const user = useSupabaseUser();

@@ -5,7 +5,6 @@
 <script setup>
 definePageMeta({
   layout: 'authenticated',
-  //middleware: 'auth',
   name: 'logout',
   icon: 'logout',
 });

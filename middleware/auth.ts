@@ -1,9 +1,8 @@
 export default defineNuxtRouteMiddleware(async to => {
-  // const token = useCookie('token');
   const user = useSupabaseUser();
-  console.log('user', user);
 
-  if (user && to.name === 'login') {
+  // Check if user is authenticated and trying to access login
+  if (user.value && to.name === 'login') {
     return navigateTo({ path: '/' });
   }
 });
